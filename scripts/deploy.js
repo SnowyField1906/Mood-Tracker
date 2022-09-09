@@ -7,10 +7,10 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("Token");
-  const token = await Token.deploy();
+  const upgradeCard = await ethers.getContractFactory("upgradeCard");
+  const contract = await upgradeCard.deploy();
 
-  console.log("Token address:", token.address);
+  console.log("Contract address:", contract.address);
 }
 
 main()
