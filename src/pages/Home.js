@@ -48,8 +48,7 @@ function Home() {
                     </svg>
 
                 </div>
-                <Pixels year={year} setYear={setYear} setDetail={setDetail} />
-
+                <Pixels year={year} setYear={setYear} detail={detail} setDetail={setDetail} />
 
             </div>
             <DayDetail detail={detail} />
