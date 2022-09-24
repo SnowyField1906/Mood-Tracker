@@ -22,11 +22,11 @@ function Pixels(props) {
                                     [...Array(monthDays[i])].map((_, j) => {
                                         if (isToday(props.year, i, j + 1)) {
                                             return (
-                                                <div class="bg-gray-200 rounded-sm w-11 h-4 hover:bg-blue-400 cursor-pointer ring-blue-700 ring-2"></div>
+                                                <div class="bg-gray-200 rounded-sm w-[90%] h-4 hover:bg-blue-400 cursor-pointer ring-blue-700 ring-2"></div>
                                             )
                                         }
                                         return (
-                                            <div class="bg-gray-200 rounded-sm w-11 h-4 hover:bg-gray-400 cursor-pointer"></div>
+                                            <div class="bg-gray-200 rounded-sm w-[90%] h-4 hover:bg-gray-400 cursor-pointer"></div>
                                         )
                                     })
                                 }

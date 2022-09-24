@@ -33,7 +33,7 @@ function Home() {
 
     return (
         <>
-            <div className='flex flex-col w-[40%] m-3 select-none'>
+            <div className='flex flex-col lg:w-[40%] md:w-full m-3 select-none'>
                 <div className='flex justify-between'>
 
                     <svg class="w-10 h-10 rounded-full hover:bg-blue-400 cursor-pointer" viewBox="0 0 20 20" fill='blue' onClick={() => setYear(year - 1)}>
