@@ -4,6 +4,7 @@ import { ethers } from "ethers"
 import { contractABI, contractAddress } from '../utils/index';
 
 import Pixels from '../components/Pixels';
+import DayDetail from '../components/DayDetail';
 
 function Home() {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -30,9 +31,10 @@ function Home() {
     }
 
     const [year, setYear] = useState(2022);
+    const [detail, setDetail] = useState(null);
 
     return (
-        <>
+        <div className='flex'>
             <div className='flex flex-col lg:w-[40%] md:w-full m-3 select-none'>
                 <div className='flex justify-between'>
 
@@ -46,11 +48,13 @@ function Home() {
                     </svg>
 
                 </div>
+                <Pixels year={year} setYear={setYear} setDetail={setDetail} />
 
-                <Pixels year={year} setYear={setYear} />
 
             </div>
-        </>
+            <DayDetail detail={detail} />
+
+        </div>
     )
 }
 
