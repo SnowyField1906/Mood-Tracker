@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ethers } from "ethers"
 
 import { contractABI, contractAddress } from '../utils/index';
-
+    
 import Pixels from '../components/Pixels';
 import DayDetail from '../components/DayDetail';
 
@@ -14,28 +14,24 @@ function Home() {
 
     console.log("Account:", signer.getAddress());
 
-    const day = 1;
-    const emotionNumber = 1;
-    const emotion = ["1"];
-    const category = ["1"];
-    const activityNumber = 1;
-    const activity = ["1"];
-    const sleepNumber = 1;
-    const hour = [1];
-    const weatherNumber = 1;
-    const weather = ["1"];
-    const description = "123";
 
-    const handleAddCardAction = async () => {
-        await contractInstance.addMood(day, emotionNumber, emotion, category, activityNumber, activity, sleepNumber, hour, weatherNumber, weather, description);
+    const handleAddMood = async (date, mood) => {
+        await contractInstance.addMood(date, mood, signer.getAddress(), { gasLimit: 3000000 });
     }
+    const handleViewMood = (date) => {
+        return contractInstance.viewMood(date, signer.getAddress());
+    }
+
+    console.log(contractInstance.viewMood(19259, signer.getAddress()))
+    console.log(provider.getCode(0xaBfC1c2b43d60268d76aC72AF7992BCFDAbE3b7a))
 
     const [year, setYear] = useState(2022);
     const [detail, setDetail] = useState(null);
+    const [mood, setMood] = useState(0);
 
     return (
-        <div className='flex'>
-            <div className='flex flex-col lg:w-[40%] md:w-full m-3 select-none'>
+        <div className='flex justify-center'>
+            <div className='flex flex-col lg:w-[35%] md:w-full m-3 select-none'>
                 <div className='flex justify-between'>
 
                     <svg class="w-10 h-10 rounded-full hover:bg-blue-400 cursor-pointer" viewBox="0 0 20 20" fill='blue' onClick={() => setYear(year - 1)}>
@@ -48,10 +44,10 @@ function Home() {
                     </svg>
 
                 </div>
-                <Pixels year={year} setYear={setYear} detail={detail} setDetail={setDetail} />
+                <Pixels year={year} setYear={setYear} detail={detail} setDetail={setDetail} mood={mood} setMood={setMood} />
 
             </div>
-            <DayDetail detail={detail} />
+            <DayDetail detail={detail} mood={mood} setMood={setMood} handleAddMood={handleAddMood} handleViewMood={handleViewMood} />
 
         </div>
     )

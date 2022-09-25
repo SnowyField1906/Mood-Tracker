@@ -1,18 +1,40 @@
-import React from 'react'
+import { monthNames } from '../constants';
 
-function DayDetail({ detail }) {
-    const date = new Date(detail*86400000);
+import Amazing from '../svgs/Amazing';
+import Average from '../svgs/Average';
+import Difficult from '../svgs/Difficult';
+import Great from '../svgs/Great';
+import Tough from '../svgs/Tough';
+
+
+function DayDetail(props) {
+    const date = new Date(props.detail*86400000);
     var year = date.getFullYear();
-    var month = date.getMonth() + 1;
+    var month = date.getMonth();
     var day = date.getDate();
 
+
     return (
-        <div>
+        <div className='grid w-[22%] mt-20 ml-10 content-start'>
             {
-                detail ?
-                    <p className="text-center text-black text-xl">{year + "/" + month + "/" + day}</p>
+                props.detail ?
+                    <p className="text-center text-black text-xl">{monthNames[month] + " " + day + ", " + year}</p>
                     :
                     <p className='text-center text-black text-xl'>click to see detail</p>
+            }
+            {props.detail &&
+                <div className='grid'>
+                    <div className='flex mt-10 place-content-between'>
+                        <Amazing mood={props.mood} setMood={props.setMood} />
+                        <Great mood={props.mood} setMood={props.setMood} />
+                        <Average mood={props.mood} setMood={props.setMood} />
+                        <Difficult mood={props.mood} setMood={props.setMood} />
+                        <Tough mood={props.mood} setMood={props.setMood} />
+                    </div>
+
+                    <button className='justify-self-center bg-blue-600 hover:bg-blue-800 cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed text-white text-bold text-2xl rounded-full px-5 py-2 w-min mt-10'
+                        onClick={() => props.handleAddMood(props.detail, props.mood)} disabled={!props.mood || !props.detail}>OK!</button>
+                </div>
             }
         </div>
     )

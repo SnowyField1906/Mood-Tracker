@@ -70,6 +70,41 @@
       "artifacts": [
         "MoodTracker"
       ]
+    },
+    "D:\\code rides me\\Mood-Tracker\\contracts\\TestContract.sol": {
+      "lastModificationDate": 1664108640080,
+      "contentHash": "72e913fb92a86de89801496fadaf4d37",
+      "sourceName": "contracts/TestContract.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "TestContract"
+      ]
     }
   }
 }
