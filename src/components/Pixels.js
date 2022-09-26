@@ -1,4 +1,4 @@
-import { monthNames, pixelConfig } from '../constants'
+import { monthNames, moodArray, pixelConfig } from '../constants'
 
 function Pixels(props) {
     const isLeap = (year) => new Date(year, 1, 29).getDate() === 29
@@ -14,7 +14,9 @@ function Pixels(props) {
         props.setMood(0)
     }
 
-    const ringHandle = (date, i, j) => {
+
+
+    const handleRing = (date, i, j) => {
         return isToday(props.year, i, j + 1) && (date === props.detail) ? "overlap"
             : isToday(props.year, i, j + 1) ? "today"
                 : date === props.detail ? "choosing"
@@ -23,19 +25,18 @@ function Pixels(props) {
 
     return (
         <div className="flex">
-            <div className="grid overflow-hidden grid-cols-1 auto-rows-auto gap-x-1 gap-y-1 place-content-start place-items-right mt-7 mr-2">
+            <div className="grid overflow-hidden grid-cols-1 auto-rows-auto gap-x-1 gap-y-1 place-content-start place-items-right mt-7 mr-2" hidden={moodArray.length !== 19358}>
                 {
                     [...Array(31)].map((_, i) => {
                         return (
                             <div class="text-black text-right text-xs h-4">{(i + 1) % 2 === 0 ? (i + 1) : ""}</div>
                         )
-
                     })
                 }
             </div>
 
-            <div class="grid overflow-hidden grid-cols-12 grid-rows-1 gap-x-1 gap-y-1">
 
+            <div class="grid overflow-hidden grid-cols-12 grid-rows-1 gap-x-1 gap-y-1">
                 {
                     [...Array(12)].map((_, i) => {
                         return (
@@ -44,24 +45,26 @@ function Pixels(props) {
                                 {
                                     [...Array(monthDays[i])].map((_, j) => {
                                         const date = Math.ceil(new Date(props.year, i, j + 1).getTime() / 86400000)
-
+                                        props.viewMood(date).then((mood) => { moodArray[date] = mood })
                                         return (
-                                            <div className={`my-[2px] mx-[1px] ${pixelConfig[+(props.detail === date) * props.mood].bg}
-                                            ${pixelConfig[+(props.detail === date) * props.mood].addition}
-                                            ${pixelConfig[ringHandle(date, i, j)]}`}
+                                            <div className={
+                                                `${pixelConfig[moodArray[date] ?? +(props.detail === date) * props.mood]}
+                                                ${pixelConfig.addition}
+                                                ${pixelConfig[handleRing(date, i, j)]}`}
                                                 onClick={() => handlePixel(date, i, j)}></div>
                                         )
 
                                     })
                                 }
-
-
                             </div>
                         )
                     })
                 }
             </div>
+
+
         </div >
+
     )
 
 }

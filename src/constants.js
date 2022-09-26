@@ -1,32 +1,17 @@
 export const monthNames = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-export const pixelConfig = {
-    0: {
-        bg: 'bg-gray-200 hover:bg-gray-400',
-        addition: 'rounded-sm w-[87%] h-4 cursor-pointer',
-    },
-    1: {
-        bg: 'bg-rose-500 hover:bg-rose-600',
-        addition: 'rounded-sm w-[87%] h-4 cursor-pointer',
-    },
-    2: {
-        bg: 'bg-violet-500 hover:bg-violet-600',
-        addition: 'rounded-sm w-[87%] h-4 cursor-pointer',
-    },
-    3: {
-        bg: 'bg-sky-500 hover:bg-sky-600',
-        addition: 'rounded-sm w-[87%] h-4 cursor-pointer',
-    },
-    4: {
-        bg: 'bg-amber-500 hover:bg-amber-600',
-        addition: 'rounded-sm w-[87%] h-4 cursor-pointer',
-    },
-    5: {
-        bg: 'bg-emerald-500 hover:bg-emerald-600',
-        addition: 'rounded-sm w-[87%] h-4 cursor-pointer',
-    },
+export const moodArray = []
 
+export const pixelConfig = {
+    0: 'bg-gray-200 hover:bg-gray-400',
+    1: 'bg-rose-500 hover:bg-rose-600',
+    2: 'bg-violet-500 hover:bg-violet-600',
+    3: 'bg-sky-500 hover:bg-sky-600',
+    4: 'bg-amber-500 hover:bg-amber-600',
+    5: 'bg-emerald-500 hover:bg-emerald-600',
+
+    addition: 'my-[2px] mx-[1px] rounded-sm w-[87%] h-4 cursor-pointer',
 
     choosing: 'ring-2 ring-offset-1 ring-blue-700',
     today: 'ring-2 ring-offset-1 ring-pink-700',
@@ -36,24 +21,24 @@ export const pixelConfig = {
 
 export const moodColors = {
     1: {
-        fill: 'fill-rose-500',
-        hover: 'hover:fill-rose-600',
+        fill: 'fill-rose-600',
+        hover: 'hover:fill-rose-400',
     },
     2: {
-        fill: 'fill-violet-500',
-        hover: 'hover:fill-violet-600',
+        fill: 'fill-violet-600',
+        hover: 'hover:fill-violet-400',
     },
     3: {
-        fill: 'fill-sky-500',
-        hover: 'hover:fill-sky-600',
+        fill: 'fill-sky-600',
+        hover: 'hover:fill-sky-400',
     },
     4: {
-        fill: 'fill-amber-500',
-        hover: 'hover:fill-amber-600',
+        fill: 'fill-amber-600',
+        hover: 'hover:fill-amber-400',
     },
     5: {
-        fill: 'fill-emerald-500',
-        hover: 'hover:fill-emerald-600',
+        fill: 'fill-emerald-600',
+        hover: 'hover:fill-emerald-400',
     },
 
     addition: 'group relative inline-block cursor-pointer',

@@ -35,7 +35,7 @@ function DayDetail(props) {
 
 
                     <button className='justify-self-center bg-blue-600 hover:bg-blue-800 cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed text-white text-bold text-2xl rounded-full px-5 py-2 w-min mt-10'
-                        onClick={() => props.handleAddMood(props.detail, props.mood)} disabled={!props.mood || !props.detail}>OK!</button>
+                        onClick={() => props.addMood(props.detail, props.mood)} disabled={!props.mood || !props.detail}>OK!</button>
                 </div>
             }
         </div>

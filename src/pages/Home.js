@@ -12,16 +12,14 @@ function Home() {
     const signer = provider.getSigner();
     const contractInstance = new ethers.Contract(contractAddress, contractABI, signer);
 
-    console.log("Account:", signer.getAddress());
-
-    const handleAddMood = async (date, mood) => {
+    const addMood = async (date, mood) => {
         await contractInstance.addMood(date, mood, signer.getAddress(), { gasLimit: 3000000 });
     }
-    const handleViewMood = async (date) => {
-        return await contractInstance.viewMood(date, signer.getAddress());
+    const viewMood = async (date) => {
+        let mood = await contractInstance.viewMood(date, signer.getAddress());
+        return mood;
     }
 
-    // console.log(contractInstance.viewMood(19259, signer.getAddress()))
     // console.log(provider.getCode(0xaBfC1c2b43d60268d76aC72AF7992BCFDAbE3b7a))
 
     const [year, setYear] = useState(2022);
@@ -44,11 +42,11 @@ function Home() {
 
                 </div>
                 
-                <Pixels year={year} setYear={setYear} detail={detail} setDetail={setDetail} mood={mood} setMood={setMood} />
+                <Pixels year={year} setYear={setYear} detail={detail} setDetail={setDetail} mood={mood} setMood={setMood} viewMood={viewMood} />
 
             </div>
 
-            <DayDetail detail={detail} mood={mood} setMood={setMood} handleAddMood={handleAddMood} handleViewMood={handleViewMood} />
+            <DayDetail detail={detail} mood={mood} setMood={setMood} addMood={addMood} viewMood={viewMood} />
 
         </div>
     )

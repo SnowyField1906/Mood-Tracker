@@ -4,7 +4,7 @@ import { moodColors } from '../constants';
 function Average({ mood, setMood }) {
     return (
         <>
-            <svg className={`${mood === 3 && moodColors[3].fill} ${moodColors[3].hover} ${moodColors.addition}`}
+            <svg className={`${mood === 3 && moodColors[3].fill} ${mood === 3 ? '' : moodColors[3].hover} ${moodColors.addition}`}
                 onClick={() => setMood(3)} width="60px" height="60px" version="1.1" viewBox="159.6 89.6 380.8 380.8"
                 data-tooltip-target="tooltip-bottom-3" data-tooltip-placement="bottom" xmlns="http://www.w3.org/2000/svg">
                 <defs>

@@ -7,8 +7,8 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const moodTracker = await ethers.getContractFactory("MoodTracker");
-  const contract = await moodTracker.deploy();
+  const testContract = await ethers.getContractFactory("TestContract");
+  const contract = await testContract.deploy();
 
   console.log("Contract address:", contract.address);
 }
