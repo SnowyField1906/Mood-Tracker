@@ -16,15 +16,15 @@ function DayDetail(props) {
 
     return (
         <div className='grid w-[22%] mt-20 ml-10 content-start'>
-            {
-                props.detail ?
-                    <p className="text-center text-black text-xl">{monthNames[month] + " " + day + ", " + year}</p>
+            {props.detail ?
+                    <p className="text-center font-semibold text-black text-xl">{monthNames[month] + " " + day + ", " + year}</p>
                     :
                     <p className='text-center text-black text-xl'>click to see detail</p>
             }
             {props.detail &&
                 <div className='grid'>
-                    <div className='flex mt-10 place-content-between'>
+                    <p className='text-center text-black italic text-xl mt-10'>How you feel today?</p>
+                    <div className='flex mt-5 place-content-between'>
                         <Amazing mood={props.mood} setMood={props.setMood} />
                         <Great mood={props.mood} setMood={props.setMood} />
                         <Average mood={props.mood} setMood={props.setMood} />

@@ -14,16 +14,15 @@ function Home() {
 
     console.log("Account:", signer.getAddress());
 
-
     const handleAddMood = async (date, mood) => {
         await contractInstance.addMood(date, mood, signer.getAddress(), { gasLimit: 3000000 });
     }
-    const handleViewMood = (date) => {
-        return contractInstance.viewMood(date, signer.getAddress());
+    const handleViewMood = async (date) => {
+        return await contractInstance.viewMood(date, signer.getAddress());
     }
 
-    console.log(contractInstance.viewMood(19259, signer.getAddress()))
-    console.log(provider.getCode(0xaBfC1c2b43d60268d76aC72AF7992BCFDAbE3b7a))
+    // console.log(contractInstance.viewMood(19259, signer.getAddress()))
+    // console.log(provider.getCode(0xaBfC1c2b43d60268d76aC72AF7992BCFDAbE3b7a))
 
     const [year, setYear] = useState(2022);
     const [detail, setDetail] = useState(null);
@@ -44,9 +43,11 @@ function Home() {
                     </svg>
 
                 </div>
+                
                 <Pixels year={year} setYear={setYear} detail={detail} setDetail={setDetail} mood={mood} setMood={setMood} />
 
             </div>
+
             <DayDetail detail={detail} mood={mood} setMood={setMood} handleAddMood={handleAddMood} handleViewMood={handleViewMood} />
 
         </div>
