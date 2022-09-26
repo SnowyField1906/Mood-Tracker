@@ -1,9 +1,12 @@
+import 'flowbite';
 import { moodColors } from '../constants';
 
 function Amazing({ mood, setMood }) {
     return (
         <>
-            <svg className={`${mood === 5 && moodColors[5].fill} ${moodColors[5].hover} ${moodColors.addition}`} onClick={() => setMood(5)} width="60px" height="60px" version="1.1" viewBox="159.6 89.6 380.8 380.8" xmlns="http://www.w3.org/2000/svg">
+            <svg className={`${mood === 5 && moodColors[5].fill} ${moodColors[5].hover} ${moodColors.addition}`}
+                onClick={() => setMood(5)} width="60px" height="60px" version="1.1" viewBox="159.6 89.6 380.8 380.8"
+                data-tooltip-target="tooltip-bottom-5" data-tooltip-placement="bottom" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <symbol id="ac" overflow="visible">
                         <path d="m18.766-1.125c-0.96875 0.5-1.9805 0.875-3.0312 1.125-1.043 0.25781-2.1367 0.39062-3.2812 0.39062-3.3984 0-6.0898-0.94531-8.0781-2.8438-1.9922-1.9062-2.9844-4.4844-2.9844-7.7344 0-3.2578 0.99219-5.8359 2.9844-7.7344 1.9883-1.9062 4.6797-2.8594 8.0781-2.8594 1.1445 0 2.2383 0.13281 3.2812 0.39062 1.0508 0.25 2.0625 0.625 3.0312 1.125v4.2188c-0.98047-0.65625-1.9453-1.1406-2.8906-1.4531-0.94922-0.3125-1.9492-0.46875-3-0.46875-1.875 0-3.3516 0.60547-4.4219 1.8125-1.0742 1.1992-1.6094 2.8555-1.6094 4.9688 0 2.1055 0.53516 3.7617 1.6094 4.9688 1.0703 1.1992 2.5469 1.7969 4.4219 1.7969 1.0508 0 2.0508-0.14844 3-0.45312 0.94531-0.3125 1.9102-0.80078 2.8906-1.4688z" />
@@ -76,12 +79,13 @@ function Amazing({ mood, setMood }) {
                 <path d="m350 412.16c-58.801 0-106.4-47.602-106.4-106.4 0-4.4805 3.9219-8.3984 8.3984-8.3984h196c4.4805 0 8.3984 3.9219 8.3984 8.3984 0 58.797-47.598 106.4-106.4 106.4zm-89.039-98c4.4805 45.359 42.559 81.199 89.039 81.199s85.121-35.84 89.039-81.199z" />
                 <path d="m308 245.28c-4.4805 0-8.3984-3.9219-8.3984-8.3984 0-12.879-11.762-23.52-26.32-23.52s-26.32 10.641-26.32 23.52c0 4.4805-3.9219 8.3984-8.3984 8.3984-4.4805 0-8.3984-3.9219-8.3984-8.3984 0-22.398 19.602-40.32 43.121-40.32 23.52 0 43.121 17.922 43.121 40.32-0.007812 4.4766-3.3672 8.3984-8.4062 8.3984z" />
                 <path d="m461.44 245.28c-4.4805 0-8.3984-3.9219-8.3984-8.3984 0-12.879-11.762-23.52-26.32-23.52-14.562-0.003906-26.324 10.078-26.324 23.516 0 4.4805-3.9219 8.3984-8.3984 8.3984-4.4805 0.003906-8.3984-3.918-8.3984-8.3984 0-22.398 19.602-40.32 43.121-40.32 23.52 0 43.121 17.922 43.121 40.32-0.003906 4.4805-3.9219 8.4023-8.4023 8.4023z" />
-
-                <span class="absolute hidden group-hover:flex -left-5 -top-2 -translate-y-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">This
-                is some extra useful information</span>
             </svg>
 
-            
+            <div id="tooltip-bottom-5" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Amazing
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+
 
         </>
     )
