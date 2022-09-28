@@ -1,7 +1,12 @@
 export const monthNames = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
+    "August", "September", "October", "November", "December"]
 
-export const moodArray = []
+
+export const moodArray = {
+    begin: 17532,
+    end: 19358,
+    array: []
+}
 
 export const pixelConfig = {
     0: 'bg-gray-200 hover:bg-gray-400',
@@ -13,11 +18,11 @@ export const pixelConfig = {
 
     addition: 'my-[2px] mx-[1px] rounded-sm w-[87%] h-4 cursor-pointer',
 
-    choosing: 'ring-2 ring-offset-1 ring-blue-700',
-    today: 'ring-2 ring-offset-1 ring-pink-700',
-    overlap: 'ring-2 ring-offset-1 ring-purple-700',
+    overlap: 'ring-2 ring-purple-700',
+    today: 'ring-2 ring-pink-700',
+    choosing: 'ring-2 ring-blue-700',
     default: '',
-};
+}
 
 export const moodColors = {
     1: {
@@ -42,4 +47,4 @@ export const moodColors = {
     },
 
     addition: 'group relative inline-block cursor-pointer',
-};
+}

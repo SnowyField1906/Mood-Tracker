@@ -72,8 +72,8 @@
       ]
     },
     "D:\\code rides me\\Mood-Tracker\\contracts\\TestContract.sol": {
-      "lastModificationDate": 1664108640080,
-      "contentHash": "72e913fb92a86de89801496fadaf4d37",
+      "lastModificationDate": 1664291652250,
+      "contentHash": "b75b6fdd426eec647662ba698cec716a",
       "sourceName": "contracts/TestContract.sol",
       "solcConfig": {
         "version": "0.8.4",

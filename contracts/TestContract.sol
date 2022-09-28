@@ -20,6 +20,10 @@ contract TestContract {
     }
     mapping(address => User) public users;
 
+    function isLeap(uint _year) public pure returns (uint8) {
+        return (_year % 4 == 0 && (_year % 100 != 0 || _year % 400 == 0)) ? 1 : 0;
+    }
+
     function addMood(
         uint _date,
         uint8 _moodId,
@@ -31,11 +35,16 @@ contract TestContract {
     }
 
     function viewMood(
-        uint _date,
+        uint _begin,
+        uint _end,
         address _userAddress
-    ) public view returns (uint8) {
+    ) public view returns (uint8[] memory) {
         User storage user = users[_userAddress];
-        return user.mood[_date].moodId;
+        uint count = 0;
+        uint8[] memory moodArray = new uint8[](_end - _begin);
+        for (uint i = _begin; i < _end; i++) {
+            moodArray[count++] = user.mood[i].moodId;
+        }
+        return moodArray;
     }
-    
 }
