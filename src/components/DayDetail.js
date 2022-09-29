@@ -1,3 +1,5 @@
+import { authencation, transactionStatus } from '../provider/index'
+
 import { monthNames } from '../constants'
 
 import Amazing from '../svgs/Amazing'
@@ -7,6 +9,27 @@ import Great from '../svgs/Great'
 import Tough from '../svgs/Tough'
 
 function DayDetail(props) {
+    const addMood = async (date, mood) => {
+        await authencation()
+            .then(async ({ signer, contractInstance }) => {
+                console.log(signer, contractInstance)
+                contractInstance.addMood(date, mood, signer.getAddress(), { gasLimit: 3000000 })
+                const tx = await contractInstance.create();
+                const receipt = await tx.wait()
+                try {
+                    const status = await transactionStatus(tx)
+                    console.log(status)
+                }
+                catch (error) {
+                    console.log(error)
+                }
+                finally {
+                    props.setPicking({ ...props.picking, year: props.picking.year })
+                    console.log(receipt)
+                }
+            })
+    }
+
     return (
         <div className='grid w-[22%] mt-20 ml-10 content-start'>
             {props.picking.day !== null ?
@@ -30,7 +53,7 @@ function DayDetail(props) {
 
 
                     <button className='justify-self-center bg-blue-600 hover:bg-blue-800 cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed text-white text-bold text-2xl rounded-full px-5 py-2 w-min mt-10'
-                        onClick={() => props.addMood(props.picking.date, props.mood)} disabled={!props.picking.date || !props.mood}>OK!</button>
+                        onClick={() => addMood(props.picking.date, props.mood)} disabled={!props.picking.date || !props.mood}>OK!</button>
                 </div>
             }
         </div>

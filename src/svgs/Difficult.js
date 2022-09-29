@@ -4,7 +4,8 @@ import { moodColors } from '../constants';
 function Difficult({ mood, setMood }) {
     return (
         <>
-            <svg className={`${mood === 2 && moodColors[2].fill} ${mood === 2 ? '' : moodColors[2].hover} ${moodColors.addition}`}
+            <svg className={`group relative inline-block cursor-pointer
+                ${mood === 2 && moodColors[2].fill} ${mood === 2 ? '' : moodColors[2].hover}`}
                 onClick={() => setMood(2)} width="60px" height="60px" version="1.1" viewBox="159.6 89.6 380.8 380.8"
                 data-tooltip-target="tooltip-bottom-2" data-tooltip-placement="bottom" xmlns="http://www.w3.org/2000/svg">
                 <defs>

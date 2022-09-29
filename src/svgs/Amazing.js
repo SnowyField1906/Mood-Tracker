@@ -4,7 +4,8 @@ import { moodColors } from '../constants';
 function Amazing({ mood, setMood }) {
     return (
         <>
-            <svg className={`${mood === 5 && moodColors[5].fill} ${mood === 5 ? '' : moodColors[5].hover} ${moodColors.addition}`}
+            <svg className={`group relative inline-block cursor-pointer 
+                ${mood === 5 && moodColors[5].fill} ${mood === 5 ? '' : moodColors[5].hover}`}
                 onClick={() => setMood(5)} width="60px" height="60px" version="1.1" viewBox="159.6 89.6 380.8 380.8"
                 data-tooltip-target="tooltip-bottom-5" data-tooltip-placement="bottom" xmlns="http://www.w3.org/2000/svg">
                 <defs>

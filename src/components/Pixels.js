@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { monthNames, moodArray, pixelConfig } from '../constants'
+import { monthNames, pixelConfig } from '../constants'
+
+import { authencation, transactionStatus } from '../provider/index'
 
 function Pixels(props) {
 	const isLeap = (year) => new Date(year, 1, 29).getDate() === 29
@@ -16,6 +18,7 @@ function Pixels(props) {
 		props.setMood(0)
 	}
 
+
 	const handleRing = (i, j) => {
 		return isToday(props.picking.year, i, j) && isPicking(i, j) ? "overlap"
 			: isToday(props.picking.year, i, j) ? "today"
@@ -27,20 +30,32 @@ function Pixels(props) {
 	const monthDays = [31, 28 + isLeap(props.picking.year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 	var count = -1
 
-	useEffect(() => {
+	const [pixels, setPixels] = useState([])
+
+	useEffect(() => { 
+		setLoading(true)
 		const exactMood = async () => {
-			try {
-				setLoading(true)
-				count = -1
-				const date = Math.ceil(new Date(props.picking.year, 0, 1).getTime() / 86400000)
-				moodArray.array = await props.viewMood(date, date + 365 + isLeap(props.picking.year))
-			}
-			finally {
-				console.log('finished')
-				setLoading(false)
-			}
+			return new Promise(async (resolve, reject) => {
+				try {
+					count = -1
+					const date = Math.ceil(new Date(props.picking.year, 0, 1).getTime() / 86400000)
+					await authencation().then(async ({ signer, contractInstance }) => {
+						const result = await contractInstance.viewMood(
+							date,
+							date + 365 + isLeap(props.picking.year),
+							signer.getAddress()
+						)
+						resolve(result)
+					})
+				} catch {
+					reject(false)
+				} finally {
+					setLoading(false)
+					console.log('Loaded all pixels')
+				}
+			})
 		}
-		exactMood()
+		exactMood().then((mood) => { setPixels(mood) })
 	}, [props.picking.year])
 
 	return (
@@ -67,15 +82,14 @@ function Pixels(props) {
 											count++
 											return (
 												<div className={
-													`${pixelConfig[moodArray.array[count] === 0
+													`my-[2px] mx-[1px] rounded-sm w-[87%] h-4 cursor-pointer 
+													${pixelConfig[pixels[count] === 0
 														? (+isPicking(i, j) * props.mood)
-														: moodArray.array[count]]}
-                          ${pixelConfig.addition}
-                          ${pixelConfig[handleRing(i, j)]}`}
+														: pixels[count]]}
+                          							${pixelConfig[handleRing(i, j)]}`}
 													onClick={() => handlePixel(i, j)}>
 												</div>
 											)
-
 										})
 									}
 								</div>
@@ -84,7 +98,7 @@ function Pixels(props) {
 					}
 				</div>
 
-
+ 
 			</div >
 
 			{loading &&

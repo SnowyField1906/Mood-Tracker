@@ -1,24 +1,9 @@
 import { useEffect, useState } from 'react'
-import { ethers } from "ethers"
-
-import { contractABI, contractAddress } from '../utils/index'
 
 import Pixels from '../components/Pixels'
 import DayDetail from '../components/DayDetail'
 
 function Home() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
-    provider.send("eth_requestAccounts", [])
-    const signer = provider.getSigner()
-    const contractInstance = new ethers.Contract(contractAddress, contractABI, signer)
-
-    const addMood = async (date, mood) => {
-        await contractInstance.addMood(date, mood, signer.getAddress(), { gasLimit: 3000000 })
-    }
-    const viewMood = async (begin, end) => {
-        return await contractInstance.viewMood(begin, end, signer.getAddress())
-    }
-
     const [mood, setMood] = useState(0)
     const [picking, setPicking] = useState({
         day: null,
@@ -34,7 +19,6 @@ function Home() {
         else {
             picking.date = Math.ceil(new Date(picking.year, picking.month, picking.day + 1).getTime() / 86400000)
         }
-        console.log(picking.date)
     }, [picking])
 
     return (
@@ -55,17 +39,11 @@ function Home() {
 
                 </div>
 
-                <Pixels picking={picking} setPicking={setPicking} mood={mood} setMood={setMood} viewMood={viewMood} />
+                <Pixels picking={picking} setPicking={setPicking} mood={mood} setMood={setMood} />
 
             </div>
 
-            <DayDetail picking={picking} mood={mood} setMood={setMood} addMood={addMood} />
-
-            <p className='absolute right-4 bottom-4 ilalic text-sm text-gray-400'>*Based on&nbsp
-                <a className='ilalic text-sm cursor-pointer text-gray-600 bold hover:underline hover:text-blue-600'
-                    href='https://www.unixtimestamp.com/' target="_blank" rel="noreferrer">timestamp</a>
-                , the app will not support years before 1970.
-            </p>
+            <DayDetail picking={picking} mood={mood} setMood={setMood} />
 
         </div>
     )

@@ -1,24 +1,42 @@
 import { ethers } from "ethers"
-
 import { contractABI, contractAddress } from '../utils/index'
 
-const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
-provider.send("eth_requestAccounts", [])
-const signer = provider.getSigner()
-const contractInstance = new ethers.Contract(contractAddress, contractABI, signer)
-
-const addMood = async (date, mood) => {
-    await contractInstance.addMood(date, mood, signer.getAddress(), { gasLimit: 3000000 })
+export const turnOnWeb3 = () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    return new Promise(async (resolve, reject) => {
+        if (window.ethereum) {
+            try {
+                const { chainId } = await provider.getNetwork()
+                chainId === 5 ?? alert('Please connect to the Goerli Test Network')
+            } catch (error) {
+                reject(error)
+                return false
+            } finally {
+                resolve(provider)
+            }
+        } else {
+            reject('Please check your MetaMask!')
+        }
+    })
 }
 
-export const viewMood = async (date) => {
+export const authencation = () => {
+    return new Promise(async (resolve) => {
+        await turnOnWeb3().then((provider) => {
+            const signer = provider.getSigner()
+            const contractInstance = new ethers.Contract(contractAddress, contractABI, signer)
+            resolve({ signer, contractInstance })
+        })
+    })
+}
+
+export const transactionStatus = (tx) => {
     return new Promise(async (resolve, reject) => {
-        const mood = await contractInstance.viewMood(date, signer.getAddress())
-        .then((mood) => {
-            resolve(mood)
-        })
-        .catch((err) => {
-            reject(err)
-        })
+        try {
+            const receipt = await tx.wait()
+            resolve(receipt)
+        } catch (error) {
+            reject(error)
+        }
     })
 }

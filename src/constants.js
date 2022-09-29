@@ -1,13 +1,6 @@
 export const monthNames = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"]
 
-
-export const moodArray = {
-    begin: 17532,
-    end: 19358,
-    array: []
-}
-
 export const pixelConfig = {
     0: 'bg-gray-200 hover:bg-gray-400',
     1: 'bg-rose-500 hover:bg-rose-600',
@@ -15,8 +8,6 @@ export const pixelConfig = {
     3: 'bg-sky-500 hover:bg-sky-600',
     4: 'bg-amber-500 hover:bg-amber-600',
     5: 'bg-emerald-500 hover:bg-emerald-600',
-
-    addition: 'my-[2px] mx-[1px] rounded-sm w-[87%] h-4 cursor-pointer',
 
     overlap: 'ring-2 ring-purple-700',
     today: 'ring-2 ring-pink-700',
