@@ -2,7 +2,8 @@ import { ethers } from "ethers"
 import { contractABI, contractAddress } from '../utils/index'
 
 export const turnOnWeb3 = () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    window.ethereum.request({ method: 'eth_requestAccounts' })
     return new Promise(async (resolve, reject) => {
         if (window.ethereum) {
             try {
