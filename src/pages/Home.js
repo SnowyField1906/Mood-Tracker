@@ -4,7 +4,12 @@ import Pixels from '../components/Pixels'
 import DayDetail from '../components/DayDetail'
 
 function Home() {
-    const [mood, setMood] = useState(0)
+    const [form, setForm] = useState({
+        mood: 0,
+        weather: 0,
+        emotion: 0,
+        journal: '',
+    })
     const [picking, setPicking] = useState({
         day: null,
         month: null,
@@ -39,11 +44,11 @@ function Home() {
 
                 </div>
 
-                <Pixels picking={picking} setPicking={setPicking} mood={mood} setMood={setMood} />
+                <Pixels picking={picking} setPicking={setPicking} form={form} setForm={setForm} />
 
             </div>
 
-            <DayDetail picking={picking} mood={mood} setMood={setMood} />
+            <DayDetail picking={picking} form={form} setForm={setForm} />
 
         </div>
     )

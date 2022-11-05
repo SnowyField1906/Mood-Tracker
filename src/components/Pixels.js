@@ -15,7 +15,7 @@ function Pixels(props) {
 
 	const handlePixel = (i, j) => {
 		props.setPicking({ ...props.picking, month: i, day: j })
-		props.setMood(0)
+		props.setForm({ mood: 0, weather: 0, emotion: 0, journal: '' })
 	}
 
 
@@ -25,6 +25,8 @@ function Pixels(props) {
 				: isPicking(i, j) ? "choosing"
 					: "default"
 	}
+
+	console.log(transactionStatus)
 
 	const [loading, setLoading] = useState(true)
 	const monthDays = [31, 28 + isLeap(props.picking.year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -84,7 +86,7 @@ function Pixels(props) {
 												<div className={
 													`my-[2px] mx-[1px] rounded-sm w-[87%] h-4 cursor-pointer 
 													${pixelConfig[pixels[count] === 0
-														? (+isPicking(i, j) * props.mood)
+														? (+isPicking(i, j) * props.form.mood)
 														: pixels[count]]}
                           							${pixelConfig[handleRing(i, j)]}`}
 													onClick={() => handlePixel(i, j)}>

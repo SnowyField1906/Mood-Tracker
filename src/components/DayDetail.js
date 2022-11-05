@@ -44,16 +44,30 @@ function DayDetail(props) {
                     <p className='text-center text-black italic text-xl mt-10'>How you feel today?</p>
 
                     <div className='flex mt-5 place-content-between'>
-                        <Amazing mood={props.mood} setMood={props.setMood} />
-                        <Great mood={props.mood} setMood={props.setMood} />
-                        <Average mood={props.mood} setMood={props.setMood} />
-                        <Difficult mood={props.mood} setMood={props.setMood} />
-                        <Tough mood={props.mood} setMood={props.setMood} />
+                        <Amazing mood={props.form.mood} setForm={props.setForm} />
+                        <Great mood={props.form.mood} setForm={props.setForm} />
+                        <Average mood={props.form.mood} setForm={props.setForm} />
+                        <Difficult mood={props.form.mood} setForm={props.setForm} />
+                        <Tough mood={props.form.mood} setForm={props.setForm} />
                     </div>
+
+                    <div className="flex items-center justify-center" onFocus={(e) => { props.setForm({ ...props.form, weather: e.target.value }) }}>
+                        {[Array(5).keys()].map((i) => {
+                            return (
+                                <div>
+                            <input name="rating" type="radio" id={i} className="sr-only peer" value={i}/>
+                            <label htmlFor="1" className="rounded-l inline-block px-6 py-2.5 border-2 bg-gray-600 text-white font-medium text-xs leading-tight uppercase peer-hover:bg-blue-600 peer-focus:outline-none peer-checked:bg-blue-700 transition duration-150 ease-in-out">
+                            i
+                            </label>
+                        </div>
+                            )
+                        }
+                        )}
 
 
                     <button className='justify-self-center bg-blue-600 hover:bg-blue-800 cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed text-white text-bold text-2xl rounded-full px-5 py-2 w-min mt-10'
-                        onClick={() => addMood(props.picking.date, props.mood)} disabled={!props.picking.date || !props.mood}>OK!</button>
+                        onClick={() => addMood(props.picking.date, props.form.mood)} disabled={!props.picking.date || !props.form.mood}>OK!</button>
+                    </div>
                 </div>
             }
         </div>
